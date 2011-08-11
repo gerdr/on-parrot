@@ -1,16 +1,44 @@
+TARGETS := help all gh-pages comments backup push
+.PHONY : $(TARGETS)
+
 MD_FILES := $(wildcard *.md)
 HTML_FILES := $(MD_FILES:.md=.html)
 
-.PHONY : html push
+TO_TITLE_PL := \
+	$$_ = $$ARGV[0]; \
+	s/\.md$$//; \
+	s/^(\w)/\U$$1/; \
+	s/(?:-)(\w)/ \U$$1/g; \
+	print;
 
-html : $(HTML_FILES)
+help :
+	@echo make targets: $(TARGETS)
 
-push : html
-	git commit -a -m "autocommit before push"
-	git add $(HTML_FILES)
-	git checkout gh-pages
-	git checkout master $(HTML_FILES)
-	git commit -a -m "update gh-pages"
+all : gh-pages comments push
+
+backup :
+	-git add -- *.md *.html
+	-git commit -m 'backup commit'
+
+pages : $(HTML_FILES) backup
+	git checkout -f $@
+	git checkout master -- $(HTML_FILES)
+	git add -- $(HTML_FILES)
+	git commit -m 'update $@'
+	git checkout master
+
+comments : backup
+	git checkout -f $@
+	@for file in $(MD_FILES); do if [ ! -f $$file ]; then \
+		title=`perl -e '$(TO_TITLE_PL)' $$file`; \
+		git checkout master -- $$file; \
+		git add -- $$file; \
+		git commit -m "post comments to '$$title' here"; \
+	fi; done
+	git checkout master
+
+push :
+	git push --all
 
 %.html : %.md header.pl footer.pl
 	perl header.pl $< >$@
