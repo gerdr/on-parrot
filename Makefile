@@ -23,8 +23,8 @@ backup :
 gh-pages : $(HTML_FILES) backup
 	git checkout $@
 	git checkout master -- $(HTML_FILES)
-	git add -- $(HTML_FILES)
-	git commit -m 'update $@'
+	-git add -- $(HTML_FILES)
+	-git commit -m 'update $@'
 	git checkout master
 
 comments : backup
