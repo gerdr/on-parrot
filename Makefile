@@ -7,6 +7,7 @@ html : $(HTML_FILES)
 
 push : html
 	git commit -a -m "autocommit before push"
+	git add $(HTML_FILES)
 	git checkout gh-pages
 	git checkout master $(HTML_FILES)
 	git commit -a -m "update gh-pages"
