@@ -65,7 +65,7 @@ to be the same as the build directory so `libparrot.dll` can be found by
 non-installed Parrots.
 
 Finally, `Configure.pl` incorrectly detects `sys/utsname.h`, but adding it to
-the list of headers explicitl probed for fixed that.
+the list of headers explicitly probed for fixed that.
 
 This was it. Parrot builds on MSYS.
 
