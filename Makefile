@@ -29,7 +29,7 @@ gh-pages : $(HTML_FILES) backup
 
 comments : backup
 	git checkout $@
-	@for file in $(MD_FILES); do if [ ! -f $$file ]; then \
+	@for file in $(filter-out index.md,$(MD_FILES)); do if [ ! -f $$file ]; then \
 		title=`perl -e '$(TO_TITLE_PL)' $$file`; \
 		git checkout master -- $$file; \
 		git add -- $$file; \
