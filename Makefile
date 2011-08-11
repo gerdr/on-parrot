@@ -21,14 +21,14 @@ backup :
 	-git commit -m 'backup commit'
 
 pages : $(HTML_FILES) backup
-	git checkout -f $@
+	git checkout $@
 	git checkout master -- $(HTML_FILES)
 	git add -- $(HTML_FILES)
 	git commit -m 'update $@'
 	git checkout master
 
 comments : backup
-	git checkout -f $@
+	git checkout $@
 	@for file in $(MD_FILES); do if [ ! -f $$file ]; then \
 		title=`perl -e '$(TO_TITLE_PL)' $$file`; \
 		git checkout master -- $$file; \
