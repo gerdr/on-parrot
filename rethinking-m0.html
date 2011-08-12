@@ -10,7 +10,7 @@
  <h1><a href="http://github.com/gerdr" title="github.com/gerdr"><img
   src="http://assets.github.com/images/gravatars/gravatar-140.png" width="48"
   height="48">gerdr</a> on parrot</h1>
- <div id="navi"><a href="index.html">index</a><!-- | <a href="https://github.com/gerdr/on-parrot/commits/comments">comments</a>--></div>
+ <div id="navi"><a href="index.html">index</a> | <a href="https://github.com/gerdr/on-parrot/commits/comments">comments</a></div>
 <h2>Rethinking M0</h2>
 
 <p><strong>DISCLAIMER:</strong> This essay was written while <em>NOT</em> under influence of controlled
@@ -131,20 +131,20 @@ values across instructions.</p>
 <p>The m0+ examples from above would expand to the follwing m0- instructions:</p>
 
 <pre><code>%0 = add int %1, 0xFF
-get ia %1 ; load %1 into ia
-set ib 0xFF ; set ib to 0xFF
-add ia ; set ia to ia + ib
-put ia %0 ; store ia into %0
+get ia %1    ; load %1 into ia
+set ib 0xFF  ; set ib to 0xFF
+add ia       ; set ia to ia + ib
+put ia %0    ; store ia into %0
 
 %42 = add float 0.15, [@foo : %10 * 4 -&gt; f32]
-set fa 0.15 ; set fa to 0.15
-set pb @foo ; set pb to the address of the global @foo
-get ib %10 ; load %10 into ib
-offset pb 4 ; set pb to pb + ib * 4
-load f32 fb ; convert value pointed to by pb from f32 to float,
-; put it into fb
-add fa ; set fa to fa + fb
-put fa %42 ; store fa into %42
+set fa 0.15  ; set fa to 0.15
+set pb @foo  ; set pb to the address of the global @foo
+get ib %10   ; load %10 into ib
+offset pb 4  ; set pb to pb + ib * 4
+load f32 fb  ; convert value pointed to by pb from f32 to float,
+             ; put it into fb
+add fa       ; set fa to fa + fb
+put fa %42   ; store fa into %42
 </code></pre>
 
 <p>The in-memory representation of an m0- instruction ideally consists of the jump
