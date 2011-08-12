@@ -1,7 +1,7 @@
 Making Parrots Fly
 ------------------
 
-XXXYYY
+**Update:** Just testing if updates work correctly...
 
 Some preliminary information so you see where I'm coming from: I do C coding on
 Windows, mostly for fun and using open source compilers - mainly MinGW and
