@@ -19,5 +19,5 @@ print <<"EOT";
  <h1><a href="http://github.com/gerdr" title="github.com/gerdr"><img
   src="http://assets.github.com/images/gravatars/gravatar-140.png" width="48"
   height="48">gerdr</a> on parrot</h1>
- <div id="navi"><a href="index.html">index</a><!-- | <a href="https://github.com/gerdr/on-parrot/commits/comments">comments</a>--></div>
+ <div id="navi"><a href="index.html">index</a> | <a href="https://github.com/gerdr/on-parrot/commits/comments">comments</a></div>
 EOT

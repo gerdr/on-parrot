@@ -115,20 +115,20 @@ values across instructions.
 The m0+ examples from above would expand to the follwing m0- instructions:
 
     %0 = add int %1, 0xFF
-    get ia %1 ; load %1 into ia
-    set ib 0xFF ; set ib to 0xFF
-    add ia ; set ia to ia + ib
-    put ia %0 ; store ia into %0
+    get ia %1    ; load %1 into ia
+    set ib 0xFF  ; set ib to 0xFF
+    add ia       ; set ia to ia + ib
+    put ia %0    ; store ia into %0
 
     %42 = add float 0.15, [@foo : %10 * 4 -> f32]
-    set fa 0.15 ; set fa to 0.15
-    set pb @foo ; set pb to the address of the global @foo
-    get ib %10 ; load %10 into ib
-    offset pb 4 ; set pb to pb + ib * 4
-    load f32 fb ; convert value pointed to by pb from f32 to float,
-    ; put it into fb
-    add fa ; set fa to fa + fb
-    put fa %42 ; store fa into %42
+    set fa 0.15  ; set fa to 0.15
+    set pb @foo  ; set pb to the address of the global @foo
+    get ib %10   ; load %10 into ib
+    offset pb 4  ; set pb to pb + ib * 4
+    load f32 fb  ; convert value pointed to by pb from f32 to float,
+                 ; put it into fb
+    add fa       ; set fa to fa + fb
+    put fa %42   ; store fa into %42
 
 The in-memory representation of an m0- instruction ideally consists of the jump
 label implementing the instruction and the immediate value. Thus, on 32bit

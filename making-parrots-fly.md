@@ -1,6 +1,8 @@
 Making Parrots Fly
 ------------------
 
+XXXYYY
+
 Some preliminary information so you see where I'm coming from: I do C coding on
 Windows, mostly for fun and using open source compilers - mainly MinGW and
 sometimes Clang. However, a compiler is not enough, you need supporting tools

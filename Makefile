@@ -4,13 +4,6 @@ TARGETS := help all gh-pages comments backup push
 MD_FILES := $(wildcard *.md)
 HTML_FILES := $(MD_FILES:.md=.html)
 
-TO_TITLE_PL := \
-	$$_ = $$ARGV[0]; \
-	s/\.md$$//; \
-	s/^(\w)/\U$$1/; \
-	s/(?:-)(\w)/ \U$$1/g; \
-	print;
-
 help :
 	@echo make targets: $(TARGETS)
 
@@ -29,11 +22,18 @@ gh-pages : $(HTML_FILES) backup
 
 comments : backup
 	git checkout $@
-	@for file in $(filter-out index.md,$(MD_FILES)); do if [ ! -f $$file ]; then \
-		title=`perl -e '$(TO_TITLE_PL)' $$file`; \
-		git checkout master -- $$file; \
-		git add -- $$file; \
-		git commit -m "post comments to '$$title' here"; \
+	git checkout master -- messages.pl
+	-for file in $(filter-out index.md,$(MD_FILES)); do \
+		if [ -f $$file ]; then \
+			msg=`perl messages.pl update $$file`; \
+			git checkout master -- $$file; \
+			git add -- $$file; \
+			git commit -m "$$msg" -- $$file; \
+		else \
+			msg=`perl messages.pl create $$file`; \
+			git checkout master -- $$file; \
+			git add -- $$file; \
+			git commit -m "$$msg" -- $$file; \
 	fi; done
 	git checkout master
 
