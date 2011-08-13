@@ -11,7 +11,7 @@ help :
 all : gh-pages comments push
 
 backup :
-	-git add -- *.md *.html
+	-git add -- *.md *.html $(STATIC_FILES)
 	-git commit -m 'backup commit'
 
 gh-pages : $(HTML_FILES) backup
