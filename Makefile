@@ -3,6 +3,7 @@ TARGETS := help all gh-pages comments backup push
 
 MD_FILES := $(wildcard *.md)
 HTML_FILES := $(MD_FILES:.md=.html)
+STATIC_FILES := styles.css
 
 help :
 	@echo make targets: $(TARGETS)
@@ -15,8 +16,8 @@ backup :
 
 gh-pages : $(HTML_FILES) backup
 	git checkout $@
-	git checkout master -- $(HTML_FILES)
-	-git add -- $(HTML_FILES)
+	git checkout master -- $(STATIC_FILES) $(HTML_FILES)
+	git add .
 	-git commit -m 'update $@'
 	git checkout master
 
