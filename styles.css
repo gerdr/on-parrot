@@ -46,6 +46,11 @@ pre, p code {
 	border: 1px solid gray;
 }
 
+p code {
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+}
+
 h1 {
 	border-bottom: 1px solid black;
 	margin: 0;
