@@ -4,6 +4,7 @@ use warnings;
 my $title = $ARGV[0];
 $title =~ s/\.md$//;
 $title =~ s/^(\w)/\U$1/;
+$title =~ s/--/&ndash;/;
 $title =~ s/(?:-)(\w)/ \U$1/g;
 
 print <<"EOT";
